@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Gamarjoba {{ user.username }}!</h1>
+<p><strong><a style="font-size:20px" href="{% url 'passwordlist' %}">Go to the list of passwords</a></strong></p>
+<br \></br \>
+<p><a href="{% url 'password_change' %}">Password Change</a></p>
+<form action="{% url 'logout' %}" method="POST">
+  {% csrf_token %}
+  <button type="submit">Log Out</button>
+</form>
+{% else %}
+
+<h2>Welcome to my Django password manager</h2>
+<p>You are not logged in&emsp;<a href="{% url 'login' %}">Log In</a></p>
+<br \><br \>
+<p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+<p><a href="{% url 'signup' %}">Sign up</a></p>
+{% endif %}
+{% endblock %}

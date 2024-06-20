@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}New entry{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Create new entry</h2>
+<p><a href="{% url 'passwordlist' %}">Back to password list</a></p>
+<form method="POST">
+  {% csrf_token %}
+  {{ newentry }}
+<button type="submit">Submit</button>
+</form>
+{% endif %}
+{% endblock %}
